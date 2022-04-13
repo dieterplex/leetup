@@ -29,6 +29,7 @@ USAGE:
 
 FLAGS:
     -h, --help       Prints help information
+    -r, --refresh    Refresh problems metadata
     -s, --stat       Show statistic counter of the output list
     -V, --version    Prints version information
 

@@ -30,6 +30,10 @@ pub struct List {
     /// Order by ProblemId, Question Title, or Difficulty
     #[structopt(short, long)]
     pub order: Option<String>,
+
+    /// Refresh problems metadata
+    #[structopt(short, long)]
+    pub refresh: bool,
 }
 
 #[derive(Debug, StructOpt)]

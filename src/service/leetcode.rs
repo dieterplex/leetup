@@ -85,6 +85,9 @@ impl<'a> ServiceProvider<'a> for Leetcode<'a> {
     }
 
     async fn list_problems(&mut self, list: List) -> Result<()> {
+        if list.refresh {
+            if let Err(_) = self.cache.remove(CacheKey::Problems.into()) {}
+        }
         let problems_res = self.fetch_all_problems().await?;
         let mut probs: ProblemInfoSeq = vec![];
 
