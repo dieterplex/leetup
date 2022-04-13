@@ -532,7 +532,10 @@ impl<'a> Leetcode<'a> {
             let content = content.replace("**", "");
             let content = content
                 .split('\n')
-                .map(|s| format!("{} {}", line_comment, s))
+                .map(|s| match s {
+                    "" => line_comment.to_string(),
+                    _ => format!("{} {}", line_comment, s),
+                })
                 .collect::<Vec<String>>()
                 .join("\n");
             info!("Single Comment: {}", single_comment);
@@ -555,10 +558,6 @@ impl<'a> Leetcode<'a> {
             debug!("Content: {}", content);
             definition = Some(content);
         }
-
-        let mut filename = env::current_dir()?;
-        filename.push(slug);
-        filename.set_extension(&lang.extension);
 
         if let Some(code_defs) = &response["data"]["question"]["codeDefinition"].as_str() {
             let mut buf = String::new();
